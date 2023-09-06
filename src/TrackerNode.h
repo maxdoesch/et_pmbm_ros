@@ -16,7 +16,6 @@ class TrackerNode : ros::NodeHandle
         void _rcvPointCallback(const sensor_msgs::PointCloud2::ConstPtr & pointMsg);
 
         tracker::PMBM _tracker;
-        validation::Visualization _visualization;
 
         ros::Subscriber _pointSub;
         ros::Publisher _boxPub;

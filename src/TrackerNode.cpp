@@ -2,9 +2,10 @@
 
 #include <pcl_conversions/pcl_conversions.h>
 
-TrackerNode::TrackerNode() : _tracker(_max_hypotheses), _visualization(0.001, 40), _lastIteration{ros::Time::now()}
+TrackerNode::TrackerNode() : _tracker(_max_hypotheses), _lastIteration{ros::Time::now()}
 {
     _pointSub = this->subscribe(_pointTopic, 1, &TrackerNode::_rcvPointCallback, this);
+    
 }
 
 void TrackerNode::_rcvPointCallback(const sensor_msgs::PointCloud2::ConstPtr & pointMsg)
@@ -26,7 +27,7 @@ void TrackerNode::_rcvPointCallback(const sensor_msgs::PointCloud2::ConstPtr & p
     std::vector<validation::ValidationModel*> models;
     _tracker.estimate(models);
 
-    _visualization.draw(pointcloud, models);
+    std::cout << models.size() << std::endl;
 
     for(validation::ValidationModel* v_model : models)
     {

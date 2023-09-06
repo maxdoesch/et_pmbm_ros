@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(et-pmbm-ros)
+project(et_pmbm_ros)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -115,7 +115,7 @@ add_subdirectory(et-pmbm)
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES et-pmbm-ros
+#  LIBRARIES et_pmbm_ros
 #  CATKIN_DEPENDS geometry_msgs geometry_msgs nav_msgs pcl_ros roscpp sensor_msgs std_msgs tf2 tf2_ros vision_msgs visualization_msgs
 #  DEPENDS system_lib
 )
@@ -134,7 +134,7 @@ include_directories(
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/et-pmbm-ros.cpp
+#   src/${PROJECT_NAME}/et_pmbm_ros.cpp
 # )
 
 ## Add cmake target dependencies of the library
@@ -210,7 +210,7 @@ target_link_libraries(${PROJECT_NAME}
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_et-pmbm-ros.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_et_pmbm_ros.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
