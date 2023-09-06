@@ -1,1 +1,3 @@
-
+[submodule "et-pmbm"]
+	path = et-pmbm
+	url = https://github.com/maxdoesch/et-pmbm.git

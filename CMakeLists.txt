@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(et_pmbm)
+project(et-pmbm-ros)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -20,6 +20,9 @@ find_package(catkin REQUIRED COMPONENTS
   vision_msgs
   visualization_msgs
 )
+
+## Add your external C++ project
+add_subdirectory(et-pmbm)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -112,7 +115,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES et_pmbm
+#  LIBRARIES et-pmbm-ros
 #  CATKIN_DEPENDS geometry_msgs geometry_msgs nav_msgs pcl_ros roscpp sensor_msgs std_msgs tf2 tf2_ros vision_msgs visualization_msgs
 #  DEPENDS system_lib
 )
@@ -126,11 +129,12 @@ catkin_package(
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
+  et-pmbm/include
 )
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/et_pmbm.cpp
+#   src/${PROJECT_NAME}/et-pmbm-ros.cpp
 # )
 
 ## Add cmake target dependencies of the library
@@ -141,7 +145,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/et_pmbm_node.cpp)
+add_executable(${PROJECT_NAME} src/et_pmbm_ros.cpp src/TrackerNode.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -151,12 +155,13 @@ include_directories(
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-# add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(${PROJECT_NAME}_node
-#   ${catkin_LIBRARIES}
-# )
+target_link_libraries(${PROJECT_NAME}
+  ${catkin_LIBRARIES}
+  et_pmbm_lib
+)
 
 #############
 ## Install ##
@@ -205,7 +210,7 @@ include_directories(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_et_pmbm.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_et-pmbm-ros.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
