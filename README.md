@@ -4,6 +4,8 @@ ROS package for the C++ implementation of the Extended Target Gamma Gaussian Inv
 
 `Design and Implementation of a Lidar-Based Multiple Object Tracking System for Autonomous Shunting Locomotives` 
 
+![](images/tracker_demo.gif)
+
 # Requirements
 `OpenCV`
 `Boost`
