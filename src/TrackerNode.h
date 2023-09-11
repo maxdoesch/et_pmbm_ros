@@ -14,15 +14,15 @@ class TrackerNode : ros::NodeHandle
 
     private:
         void _rcvPointCallback(const sensor_msgs::PointCloud2::ConstPtr & pointMsg);
+        void publishVisualization(std::vector<validation::ValidationModel*> const& models);
+
+        int const _max_hypotheses = 10;
 
         tracker::PMBM _tracker;
 
         ros::Subscriber _pointSub;
-        ros::Publisher _boxPub;
+        ros::Publisher _visPub;
 
-        ros::Time _lastIteration;
-
-        int const _max_hypotheses = 10;
-
-        std::string const _pointTopic = "/rt40/floor_segmented";
+        std::string const _pointTopic = "/rt40/dynamic_segmented";
+        std::string const _visTopic = "/rt40/bbox";
 };
